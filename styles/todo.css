@@ -1,0 +1,11 @@
+@import 'index.css';
+
+.todo {
+    background-color: var(--purple);
+    /* border: 1px solid red; */
+    height: 90vh;
+}
+
+.todo__add--button {
+    outline: none;
+}
