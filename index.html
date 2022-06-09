@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/todo.css">
     <title>TODO-LIST</title>
 </head>
+
 <body>
     <header class="header">
         <h1 class="header__title">TODO-LIST</h1>
@@ -23,9 +25,23 @@
                 <input type="text" class="todo__add--input" placeholder="Type a task">
                 <button class="todo__add--button">Add new task</button>
             </div>
+            <div class="todo__list">
+                <ul class="todo__list--extern">
+                    <li class="todo__list--item">
+                        <div class="list--checkbox">
+                            <input type="checkbox" class="todo__list--checkbox--input">
+                        </div>
+                        <div class="list--text">
+                            <p class="list--text--title">Lorem ipsum dolor</p>
+                        </div>
+                        <p class="list--text--date">Created: <span>12.12.2019</span></p>
+                    </li>
+                </ul>
+            </div>
         </section>
     </main>
 
 
 </body>
+
 </html>

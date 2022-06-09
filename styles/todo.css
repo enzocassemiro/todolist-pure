@@ -1,11 +1,73 @@
 @import 'index.css';
 
 .todo {
-    background-color: var(--purple);
-    /* border: 1px solid red; */
     height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    background-color: var(--purple);
+}
+
+.todo__add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+}
+
+.todo__add--input {
+    display: flex;
+    text-align:center;
+    width: 100%;
+    border: 0;
+    outline: none;
+    padding: 10px 0 10px 0;
+    margin-bottom: 15px;
 }
 
 .todo__add--button {
-    outline: none;
+    display: flex;
+    place-content: center center;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0 10px 0;
+    margin-bottom: 35px;
+    border: none;
+
+    font-weight: 800;
+    color: var(--white);
+    background-color: var(--red);
+}
+
+.todo__add--button:hover {
+    background-color: var(--red-select);
+    color: var(--white-select);
+}
+
+.todo__list {
+    display: flex;
+    flex-direction: column;
+    place-content: center flex-start;
+    align-items: flex-start;
+    width: 40%;
+    height: 60%;
+    border: 2px solid var(--white);
+}
+
+.todo__list--extern {
+    width: 100%;
+}
+
+.todo__list--item {
+    display: flex;
+    flex-direction: row;
+    place-content: center space-between;
+    align-items: flex-start;
+    margin: 2px 0 10px 0;
+    padding: 10px 10px 10px 10px;
+    border: 0.5px solid var(--white);
+    border-left: none;
+    border-right: none;
+    color: var(--white);
 }

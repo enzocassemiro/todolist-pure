@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+    list-style-type: none;
     font-family: 'Barlow Condensed', sans-serif;
     font-family: 'Oswald', sans-serif;
     font-family: 'Roboto', sans-serif;
@@ -10,8 +11,10 @@
 
 :root {
     --white:#E0DDE3;
+    --white-select:#e0dde377;
     --purple: #241722;
     --red: #F65751;
+    --red-select: #f6565156;
 }
 
 *:focus {
@@ -21,3 +24,19 @@
 body {
     height: 100vh;
 }
+
+::-webkit-input-placeholder {
+    text-align: center;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    text-align: center;  
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+ }
+ 
+ :-ms-input-placeholder {  
+    text-align: center; 
+ }
