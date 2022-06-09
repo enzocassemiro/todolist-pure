@@ -4,7 +4,7 @@
     height: 90vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    place-content: center center;
     align-items: center;    
     background-color: var(--purple);
 }
@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 350px;
+    width: clamp(195px, 50vw, 430px);
 }
 
 .todo__add--input {
@@ -24,18 +24,19 @@
     outline: none;
     padding: 10px 0 10px 0;
     margin-bottom: 15px;
+    color: aliceblue;
 }
 
 .todo__add--button {
     display: flex;
     place-content: center center;
     align-items: center;
-    width: 100%;
-    padding: 10px 0 10px 0;
+    min-width: 70%;
+    padding: 10px 35%;
     margin-bottom: 35px;
     border: none;
 
-    font-weight: 800;
+    font-weight: 500;
     color: var(--white);
     background-color: var(--red);
 }
@@ -50,24 +51,57 @@
     flex-direction: column;
     place-content: center flex-start;
     align-items: flex-start;
-    width: 40%;
+    width: clamp(200px, 80vw, 700px);
     height: 60%;
-    border: 2px solid var(--white);
 }
 
-.todo__list--extern {
-    width: 100%;
-}
-
-.todo__list--item {
+.list--item {
     display: flex;
+    width: 100%;
     flex-direction: row;
     place-content: center space-between;
-    align-items: flex-start;
+    align-items: center;
     margin: 2px 0 10px 0;
     padding: 10px 10px 10px 10px;
-    border: 0.5px solid var(--white);
-    border-left: none;
-    border-right: none;
+    background-color: var(--white-select);
+    border-radius: 0.2rem;
     color: var(--white);
+}
+
+.list--text--title {
+    min-width: 100%;
+    text-align: center;
+    font-weight: 800;
+    font-size: 17px;
+    color: var(--white);
+}
+
+
+.list--action button {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.list--action--edit {
+    font-weight: 600;
+    background-color: var(--red);
+    color: var(--white-select);
+    border-radius: 1rem;
+}
+
+.list--action--delete {
+    font-weight: 900;
+    color: var(--purple);
+    background-color: var(--red);
+    border-radius: 1rem;
+}
+
+@media screen and (max-width: 345px) {
+    .list--item {
+        flex-direction: column;
+    }
+
+    .list--item > div {
+        padding-top: 15px;
+    }
 }

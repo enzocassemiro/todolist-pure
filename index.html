@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/index.css">
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
     <link rel="stylesheet" type="text/css" href="./styles/todo.css">
+    <script src="main.js" defer></script>
     <title>TODO-LIST</title>
 </head>
 
@@ -21,22 +22,35 @@
 
     <main>
         <section class="todo">
-            <div class="todo__add">
-                <input type="text" class="todo__add--input" placeholder="Type a task">
-                <button class="todo__add--button">Add new task</button>
+            <form id="form-todo" class="todo__add" onsubmit="return false">
+                <input type="text" id="task" class="todo__add--input" placeholder="Type a task">
+                <button id="button-submit" class="todo__add--button" type="submit">Add new task</button>
             </div>
             <div class="todo__list">
-                <ul class="todo__list--extern">
-                    <li class="todo__list--item">
+                <!-- <div class="list--item">
                         <div class="list--checkbox">
                             <input type="checkbox" class="todo__list--checkbox--input">
                         </div>
                         <div class="list--text">
-                            <p class="list--text--title">Lorem ipsum dolor</p>
+                            <input class="list--text--title" value="Lorem ipsum dolor aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" readonly />
                         </div>
-                        <p class="list--text--date">Created: <span>12.12.2019</span></p>
-                    </li>
-                </ul>
+                    <div class="list--action">
+                        <button class="list--action--edit">Edit</button>
+                        <button class="list--action--delete">Delete</button>
+                    </div>
+                </div>
+                <div class="list--item">
+                    <div class="list--checkbox">
+                        <input type="checkbox" class="todo__list--checkbox--input">
+                    </div>
+                    <div class="list--text">
+                        <input class="list--text--title" value="Lorem ipsum dolor" readonly />
+                    </div>
+                    <div class="list--action">
+                        <button class="list--action--edit">Edit</button>
+                        <button class="list--action--delete">Delete</button>
+                    </div>
+                </div> -->
             </div>
         </section>
     </main>
