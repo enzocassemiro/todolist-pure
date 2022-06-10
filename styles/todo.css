@@ -52,7 +52,6 @@
     place-content: center flex-start;
     align-items: flex-start;
     width: clamp(200px, 80vw, 700px);
-    height: 60%;
 }
 
 .list--item {
