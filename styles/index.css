@@ -27,6 +27,10 @@ body {
     min-height: 100vh;
 }
 
+#checked {
+    text-decoration: line-through;
+}
+
 ::-webkit-input-placeholder {
     text-align: center;
  }
