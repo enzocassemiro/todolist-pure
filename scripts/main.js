@@ -1,11 +1,26 @@
 const TODO_TASK = document.querySelector('.todo__add--input');
 const TODO_LIST = document.querySelector('.todo__list');
 const BUTTON_SUBMIT = document.querySelector('#button-submit');
+const LIGHT_SCHEME_ICON = document.querySelector('link#light-scheme-icon');
+const DARK_SCHEME_ICON = document.querySelector('link#dark-scheme-icon');
 
 const todoItems = [];
 
+matcher = window.matchMedia('(prefers-color-scheme: dark)');
+matcher.addListener(onUpdate);
+onUpdate();
+
+function onUpdate() {
+    if (matcher.matches) {
+        LIGHT_SCHEME_ICON.remove();
+        document.head.append(DARK_SCHEME_ICON);
+    } else {
+        document.head.append(LIGHT_SCHEME_ICON);
+        DARK_SCHEME_ICON.remove();
+    }
+}
+
 window.addEventListener('load', e => {
-    //todos = JSON.parse(localStorage.getItem('todos')) || [];
     e.preventDefault();
     console.log('Loaded');
     BUTTON_SUBMIT.addEventListener('click', e => {
@@ -25,12 +40,13 @@ const createTodo = (element) => {
     const item = {
         id: Date.now(),
         name: element.value,
-        isChecked: false
+        isChecked: false,
+        readOnly: true,
     }
 
     todoItems.push(item);
     console.log('todoItems:', todoItems)
-    
+
     const itemDiv = document.createElement('div');
     const itemDivCheckBox = document.createElement('div');
     const itemDivText = document.createElement('div');
@@ -51,21 +67,29 @@ const createTodo = (element) => {
     itemCheckbox.type = 'checkbox';
     itemName.type = 'text';
 
+    itemCheckbox.checked = item.isChecked;
+    itemName.readOnly = item.readOnly;
     itemName.value = item.name;
-    itemName.readOnly = true;
     itemButtonEdit.innerHTML = "Edit";
     itemButtonDelete.innerHTML = "Delete";
-    itemCheckbox.checked = item.isChecked;
-    
+
     itemCheckbox.addEventListener('click', e => {
         setCheckBox(item);
         setInputStyle(itemCheckbox, itemName);
     })
-
+    
     itemButtonEdit.addEventListener('click', e => {
-        console.log('Cliclou em edit')
-        console.log('Target: ', e.target)
-        console.log('Posição na lista', todoItems.indexOf(item))    
+        if (itemButtonEdit.innerHTML == 'Edit') {
+            itemButtonEdit.innerHTML = 'Save'
+            itemButtonEdit.style.color = '#0fd916';
+        } else {
+            itemButtonEdit.innerHTML = 'Edit'
+            itemButtonEdit.style.color = '#ffff';
+        }
+
+        item.readOnly = !item.readOnly
+        itemName.readOnly = item.readOnly
+        item.name = itemName.value 
     })
 
     itemButtonDelete.addEventListener('click', e => {
@@ -76,9 +100,9 @@ const createTodo = (element) => {
             itemDiv.remove();
             return
         }
-        
+
     })
-    
+
     setInputStyle(itemCheckbox, itemName);
 
     itemDiv.appendChild(itemDivCheckBox);
@@ -106,11 +130,9 @@ const setCheckBox = (value) => {
 const setInputStyle = (element, text) => {
     if (element.checked) {
         text.style.textDecoration = 'line-through';
+        text.style.color = '#696169';
         return
     }
     text.style.textDecoration = 'none';
+    text.style.color = '#E0DDE3';
 }
-
-
-
-

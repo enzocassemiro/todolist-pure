@@ -9,6 +9,10 @@
     <link rel="stylesheet" type="text/css" href="./styles/index.css">
     <link rel="stylesheet" type="text/css" href="./styles/header.css">
     <link rel="stylesheet" type="text/css" href="./styles/todo.css">
+
+    <link rel="icon" href="favicon.png" id="light-scheme-icon">
+    <link rel="icon" href="favicon-revert.png" id="dark-scheme-icon">
+
     <script src="./scripts/main.js" defer></script>
     <title>TODO-LIST</title>
 </head>
@@ -22,15 +26,14 @@
 
     <main>
         <section class="todo">
-            <form id="form-todo" class="todo__add" onsubmit="return false">
+            <form class="todo__add" onsubmit="return false">
                 <input type="text" id="task" class="todo__add--input" placeholder="Type a task">
                 <button id="button-submit" class="todo__add--button" type="submit">Add new task</button>
             </form>
-                <div  class="todo__list">
-                </div>
+            <div class="todo__list">
+            </div>
         </section>
     </main>
-
 
 </body>
 

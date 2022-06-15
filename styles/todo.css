@@ -1,11 +1,12 @@
 @import 'index.css';
 
 .todo {
-    min-height: 90vh;
     display: flex;
     flex-direction: column;
+    margin-top: 10vh;
     place-content: center center;
-    align-items: center;    
+    align-items: center;
+
     background-color: var(--purple);
 }
 
@@ -48,7 +49,7 @@
 
 .todo__list {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     place-content: center flex-start;
     align-items: flex-start;
     width: clamp(200px, 80vw, 700px);
@@ -75,7 +76,6 @@
     color: var(--white);
 }
 
-
 .list--action button {
     cursor: pointer;
     padding: 10px;
@@ -84,7 +84,7 @@
 .list--action--edit {
     font-weight: 600;
     background-color: var(--red);
-    color: var(--white-select);
+    color: #ffff;
     border-radius: 1rem;
 }
 
