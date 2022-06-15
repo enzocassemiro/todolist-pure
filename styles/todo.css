@@ -51,18 +51,18 @@
     display: flex;
     flex-direction: column-reverse;
     place-content: center flex-start;
-    align-items: flex-start;
-    width: clamp(200px, 80vw, 700px);
+    align-items: center;
+    width: clamp(50%, 80%, 90%);
 }
 
 .list--item {
     display: flex;
-    width: 100%;
+    width: 80%;
     flex-direction: row;
     place-content: center space-between;
     align-items: center;
     margin: 2px 0 10px 0;
-    padding: 10px 10px 10px 10px;
+    padding: 10px;
     background-color: var(--white-select);
     border-radius: 0.2rem;
     color: var(--white);
@@ -83,19 +83,23 @@
 
 .list--action--edit {
     font-weight: 600;
+    border-radius: 1rem;
+    
     background-color: var(--red);
     color: #ffff;
-    border-radius: 1rem;
 }
 
 .list--action--delete {
+    margin-left: 8px;
+    border-radius: 1rem;
+
     font-weight: 900;
+    
     color: var(--purple);
     background-color: var(--red);
-    border-radius: 1rem;
 }
 
-@media screen and (max-width: 345px) {
+@media screen and (max-width: 387px) {
     .list--item {
         flex-direction: column;
     }

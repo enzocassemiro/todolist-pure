@@ -22,11 +22,9 @@ function onUpdate() {
 
 window.addEventListener('load', e => {
     e.preventDefault();
-    console.log('Loaded');
     BUTTON_SUBMIT.addEventListener('click', e => {
         e.preventDefault();
         if (!TODO_TASK.value || TODO_TASK.value.trim() === '') {
-            console.log('Empty');
             alert('Please enter a task');
             clearInput(TODO_TASK);
             return;
@@ -39,13 +37,12 @@ window.addEventListener('load', e => {
 const createTodo = (element) => {
     const item = {
         id: Date.now(),
-        name: element.value,
+        taskValue: element.value,
         isChecked: false,
         readOnly: true,
     }
 
     todoItems.push(item);
-    console.log('todoItems:', todoItems)
 
     const itemDiv = document.createElement('div');
     const itemDivCheckBox = document.createElement('div');
@@ -69,7 +66,7 @@ const createTodo = (element) => {
 
     itemCheckbox.checked = item.isChecked;
     itemName.readOnly = item.readOnly;
-    itemName.value = item.name;
+    itemName.value = item.taskValue;
     itemButtonEdit.innerHTML = "Edit";
     itemButtonDelete.innerHTML = "Delete";
 
@@ -79,21 +76,24 @@ const createTodo = (element) => {
     })
     
     itemButtonEdit.addEventListener('click', e => {
-        if (itemButtonEdit.innerHTML == 'Edit') {
-            itemButtonEdit.innerHTML = 'Save'
-            itemButtonEdit.style.color = '#0fd916';
-        } else {
-            itemButtonEdit.innerHTML = 'Edit'
-            itemButtonEdit.style.color = '#ffff';
+        if (itemName.style.textDecoration == 'none') {
+            if (itemButtonEdit.innerHTML == 'Edit') {
+                itemButtonEdit.innerHTML = 'Save'
+                itemButtonEdit.style.color = '#0fd916';
+            } else {
+                itemButtonEdit.innerHTML = 'Edit'
+                itemButtonEdit.style.color = '#ffff';
+            }
+            
+            item.readOnly = !item.readOnly
+            itemName.readOnly = item.readOnly
+            item.taskValue = itemName.value 
         }
-
-        item.readOnly = !item.readOnly
-        itemName.readOnly = item.readOnly
-        item.name = itemName.value 
+        else alert('You cannot edit a completed task')
     })
 
     itemButtonDelete.addEventListener('click', e => {
-        const question = confirm('Are you sure, you want delete?')
+        const question = confirm('Do you really want to delete this task?')
         if (question) {
             const index = todoItems.indexOf(item);
             todoItems.splice(index, 1);
@@ -113,9 +113,6 @@ const createTodo = (element) => {
     itemDivAction.appendChild(itemButtonEdit);
     itemDivAction.appendChild(itemButtonDelete);
     TODO_LIST.appendChild(itemDiv);
-
-    console.log(todoItems);
-    console.log(TODO_LIST);
 }
 
 const clearInput = (element) => {
