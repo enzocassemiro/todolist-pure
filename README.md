@@ -3,7 +3,7 @@
 ---
 
 - ### :chart_with_upwards_trend: Future Improvements
-- [ ] Local Storage
+- [x] Local Storage
 - [ ] Integrated Pomodoro
 
 - ### 💻 Stack
