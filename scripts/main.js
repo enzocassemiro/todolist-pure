@@ -22,6 +22,8 @@ function onUpdate() {
 
 window.addEventListener('load', e => {
     e.preventDefault();
+    renderLocalStorage();
+
     BUTTON_SUBMIT.addEventListener('click', e => {
         e.preventDefault();
         if (!TODO_TASK.value || TODO_TASK.value.trim() === '') {
@@ -29,21 +31,32 @@ window.addEventListener('load', e => {
             clearInput(TODO_TASK);
             return;
         }
-        createTodo(TODO_TASK);
-        clearInput(TODO_TASK);
+        createTodo();
+        clearInput();
     })
 })
 
-const createTodo = (element) => {
+const renderLocalStorage = () => {
+    Object.keys(localStorage).forEach(function (element) {
+        element = JSON.parse(localStorage.getItem(element));
+        renderTodo(element);
+    });
+}
+
+const createTodo = () => {
     const item = {
         id: Date.now(),
-        taskValue: element.value,
+        taskValue: TODO_TASK.value,
         isChecked: false,
         readOnly: true,
     }
 
     todoItems.push(item);
+    window.localStorage.setItem(item.id, JSON.stringify(item));
+    renderTodo(item);
+}
 
+const renderTodo = (item) => {
     const itemDiv = document.createElement('div');
     const itemDivCheckBox = document.createElement('div');
     const itemDivText = document.createElement('div');
@@ -74,7 +87,7 @@ const createTodo = (element) => {
         setCheckBox(item);
         setInputStyle(itemCheckbox, itemName);
     })
-    
+
     itemButtonEdit.addEventListener('click', e => {
         if (itemName.style.textDecoration == 'none') {
             if (itemButtonEdit.innerHTML == 'Edit') {
@@ -84,10 +97,11 @@ const createTodo = (element) => {
                 itemButtonEdit.innerHTML = 'Edit'
                 itemButtonEdit.style.color = '#ffff';
             }
-            
+
             item.readOnly = !item.readOnly
             itemName.readOnly = item.readOnly
-            item.taskValue = itemName.value 
+            item.taskValue = itemName.value
+            window.localStorage.setItem(item.id, JSON.stringify(item));
         }
         else alert('You cannot edit a completed task')
     })
@@ -98,6 +112,7 @@ const createTodo = (element) => {
             const index = todoItems.indexOf(item);
             todoItems.splice(index, 1);
             itemDiv.remove();
+            window.localStorage.removeItem(item.id);
             return
         }
 
@@ -115,8 +130,8 @@ const createTodo = (element) => {
     TODO_LIST.appendChild(itemDiv);
 }
 
-const clearInput = (element) => {
-    element.value = '';
+const clearInput = () => {
+    TODO_TASK.value = '';
 }
 
 const setCheckBox = (value) => {
