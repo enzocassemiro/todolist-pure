@@ -23,6 +23,7 @@ function onUpdate() {
 window.addEventListener('load', e => {
     e.preventDefault();
     renderLocalStorage();
+    console.log(todoItems)
 
     BUTTON_SUBMIT.addEventListener('click', e => {
         e.preventDefault();
@@ -40,6 +41,7 @@ const renderLocalStorage = () => {
     Object.keys(localStorage).forEach(function (element) {
         element = JSON.parse(localStorage.getItem(element));
         renderTodo(element);
+        todoItems.push(element);
     });
 }
 
@@ -136,7 +138,13 @@ const clearInput = () => {
 
 const setCheckBox = (value) => {
     const index = todoItems.indexOf(value);
-    todoItems[index].isChecked = value.isChecked;
+    console.log('Index', index)
+    console.log('Primeira váriavel:', todoItems[index].isChecked)
+    console.log('Segunda váriavel:', value.isChecked)
+    todoItems[index].isChecked = !value.isChecked;
+    console.log('Check')
+    console.log(value)
+    window.localStorage.setItem(value.id, JSON.stringify(value));
 }
 
 const setInputStyle = (element, text) => {
