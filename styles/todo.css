@@ -68,6 +68,10 @@
     color: var(--white);
 }
 
+.list--text {
+    
+}
+
 .list--text--title {
     min-width: 100%;
     text-align: center;

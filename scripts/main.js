@@ -21,9 +21,7 @@ function onUpdate() {
 }
 
 window.addEventListener('load', e => {
-    e.preventDefault();
     renderLocalStorage();
-    console.log(todoItems)
 
     BUTTON_SUBMIT.addEventListener('click', e => {
         e.preventDefault();
@@ -33,7 +31,7 @@ window.addEventListener('load', e => {
             return;
         }
         createTodo();
-        clearInput();
+        clearInput(TODO_TASK);
     })
 })
 
@@ -85,11 +83,52 @@ const renderTodo = (item) => {
     itemButtonEdit.innerHTML = "Edit";
     itemButtonDelete.innerHTML = "Delete";
 
+    doneTask(itemCheckbox, item, itemName);
+
+    editTask(itemButtonEdit, itemName, item );
+
+    deleteTask(itemButtonDelete, itemDiv, item);
+
+    setInputStyle(itemCheckbox, itemName);
+
+    itemDiv.appendChild(itemDivCheckBox);
+    itemDiv.appendChild(itemDivText);
+    itemDiv.appendChild(itemDivAction);
+    itemDivCheckBox.appendChild(itemCheckbox);
+    itemDivText.appendChild(itemName);
+    itemDivAction.appendChild(itemButtonEdit);
+    itemDivAction.appendChild(itemButtonDelete);
+    TODO_LIST.appendChild(itemDiv);
+}
+
+const clearInput = (element) => {
+    element.value = '';
+}
+
+const setCheckBox = (value) => {
+    const index = todoItems.indexOf(value);
+    todoItems[index].isChecked = !value.isChecked;
+    window.localStorage.setItem(value.id, JSON.stringify(value));
+}
+
+const setInputStyle = (element, text) => {
+    if (element.checked) {
+        text.style.textDecoration = 'line-through';
+        text.style.color = '#696169';
+        return
+    }
+    text.style.textDecoration = 'none';
+    text.style.color = '#E0DDE3';
+}
+
+const doneTask = (itemCheckbox, item, itemName) => {
     itemCheckbox.addEventListener('click', e => {
         setCheckBox(item);
         setInputStyle(itemCheckbox, itemName);
     })
+}
 
+const editTask = (itemButtonEdit, itemName, item) => {
     itemButtonEdit.addEventListener('click', e => {
         if (itemName.style.textDecoration == 'none') {
             if (itemButtonEdit.innerHTML == 'Edit') {
@@ -107,7 +146,9 @@ const renderTodo = (item) => {
         }
         else alert('You cannot edit a completed task')
     })
+}
 
+const deleteTask = (itemButtonDelete, itemDiv, item) => {
     itemButtonDelete.addEventListener('click', e => {
         const question = confirm('Do you really want to delete this task?')
         if (question) {
@@ -115,44 +156,6 @@ const renderTodo = (item) => {
             todoItems.splice(index, 1);
             itemDiv.remove();
             window.localStorage.removeItem(item.id);
-            return
         }
-
     })
-
-    setInputStyle(itemCheckbox, itemName);
-
-    itemDiv.appendChild(itemDivCheckBox);
-    itemDiv.appendChild(itemDivText);
-    itemDiv.appendChild(itemDivAction);
-    itemDivCheckBox.appendChild(itemCheckbox);
-    itemDivText.appendChild(itemName);
-    itemDivAction.appendChild(itemButtonEdit);
-    itemDivAction.appendChild(itemButtonDelete);
-    TODO_LIST.appendChild(itemDiv);
-}
-
-const clearInput = () => {
-    TODO_TASK.value = '';
-}
-
-const setCheckBox = (value) => {
-    const index = todoItems.indexOf(value);
-    console.log('Index', index)
-    console.log('Primeira váriavel:', todoItems[index].isChecked)
-    console.log('Segunda váriavel:', value.isChecked)
-    todoItems[index].isChecked = !value.isChecked;
-    console.log('Check')
-    console.log(value)
-    window.localStorage.setItem(value.id, JSON.stringify(value));
-}
-
-const setInputStyle = (element, text) => {
-    if (element.checked) {
-        text.style.textDecoration = 'line-through';
-        text.style.color = '#696169';
-        return
-    }
-    text.style.textDecoration = 'none';
-    text.style.color = '#E0DDE3';
 }
