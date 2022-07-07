@@ -1,14 +1,13 @@
 # Todo List
-## Todo list with pure HTML and Javascript.
+## Todo list with pure HTML and TypeScript.
 ---
 
 - ### :chart_with_upwards_trend: Future Improvements
 - [x] Local Storage
-- [ ] Integrated Pomodoro
 
 - ### 💻 Stack
 <div>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="60" height="60" align="center"  />         
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="60" height="60" align="center"  />         
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original-wordmark.svg" width="60" height="60" align="center" />          
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original-wordmark.svg" width="60" height="60" align="center" />                     
 </div>
