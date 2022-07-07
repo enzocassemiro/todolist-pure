@@ -4,7 +4,6 @@
 
 - ### :chart_with_upwards_trend: Future Improvements
 - [x] Local Storage
-- [ ] Integrated Pomodoro
 
 - ### 💻 Stack
 <div>
