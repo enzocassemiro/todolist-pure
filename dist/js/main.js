@@ -5,7 +5,7 @@ const BUTTON_SUBMIT = document.querySelector('#button-submit');
 const todoItems = [];
 window.addEventListener('load', () => {
     renderLocalStorage();
-    BUTTON_SUBMIT === null || BUTTON_SUBMIT === void 0 ? void 0 : BUTTON_SUBMIT.addEventListener('click', (e) => {
+    BUTTON_SUBMIT.addEventListener('click', (e) => {
         e.preventDefault();
         if (!TODO_TASK.value || TODO_TASK.value.trim() === '') {
             alert('Please enter a TASK');

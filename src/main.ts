@@ -2,12 +2,12 @@ const TODO_TASK  = document.querySelector('.todo__add--input') as HTMLInputEleme
 const TODO_LIST = document.querySelector('.todo__list') as HTMLElement;
 const BUTTON_SUBMIT  = document.querySelector('#button-submit') as HTMLElement;
 
-const todoItems: Object[] = [];
+const todoItems: ItemInterface[] = [];
 
 window.addEventListener('load', (): void => {
     renderLocalStorage();
 
-    BUTTON_SUBMIT?.addEventListener('click', (e) => {
+    BUTTON_SUBMIT.addEventListener('click', (e): void => {
         e.preventDefault();
 
         if (!TODO_TASK.value || TODO_TASK.value.trim() === '') {
@@ -22,7 +22,7 @@ window.addEventListener('load', (): void => {
 
 const renderLocalStorage = (): void => {
     Object.keys(localStorage).forEach(function (element) {
-        const elementObject = JSON.parse(localStorage.getItem(element)!) as itemInterface;
+        const elementObject = JSON.parse(localStorage.getItem(element)!) as ItemInterface;
         renderTodo(elementObject);
         todoItems.push(elementObject);
     });
@@ -30,7 +30,7 @@ const renderLocalStorage = (): void => {
 
 const createTodo = (): void => {
         
-        const item: itemInterface = {
+        const item: ItemInterface = {
             id: Date.now(),
             taskValue: TODO_TASK.value,
             isChecked: false,
@@ -46,14 +46,14 @@ const clearInput = (element: HTMLInputElement): void => {
         element.value = '';
 }
 
-interface itemInterface {
+interface ItemInterface {
     id: number,
     taskValue: string,
     isChecked: boolean,
     readOnly: boolean
 }
 
-const renderTodo = (item: itemInterface) => {
+const renderTodo = (item: ItemInterface): void => {
     const itemDiv = document.createElement('div') as HTMLDivElement;
     const itemDivCheckBox = document.createElement('div') as HTMLDivElement;
     const itemDivText = document.createElement('div') as HTMLDivElement;
@@ -98,19 +98,19 @@ const renderTodo = (item: itemInterface) => {
     TODO_LIST.appendChild(itemDiv);
 }
 
-const doneTask = (itemCheckbox: HTMLInputElement, item: itemInterface, itemName: HTMLInputElement) => {
+const doneTask = (itemCheckbox: HTMLInputElement, item: ItemInterface, itemName: HTMLInputElement): void => {
     itemCheckbox.addEventListener('click', e => {
         setCheckBox(item);
         setInputStyle(itemCheckbox, itemName);
     })
 }
 
-const setCheckBox = (value: itemInterface) => {
+const setCheckBox = (value: ItemInterface): void => {
     value.isChecked = !value.isChecked;
     window.localStorage.setItem(String(value.id), JSON.stringify(value));
 }
 
-const setInputStyle = (element: HTMLInputElement, text: HTMLInputElement) => {
+const setInputStyle = (element: HTMLInputElement, text: HTMLInputElement): void => {
     if (element.checked) {
         text.style.textDecoration = 'line-through';
         text.style.color = '#696169';
@@ -120,7 +120,7 @@ const setInputStyle = (element: HTMLInputElement, text: HTMLInputElement) => {
     text.style.color = '#E0DDE3';
 }
 
-const editTask = (itemButtonEdit: HTMLButtonElement, itemName:HTMLInputElement, item:itemInterface) => {
+const editTask = (itemButtonEdit: HTMLButtonElement, itemName:HTMLInputElement, item:ItemInterface): void => {
     itemButtonEdit.addEventListener('click', () => {
         if (itemName.style.textDecoration == 'none') {
 
@@ -141,8 +141,8 @@ const editTask = (itemButtonEdit: HTMLButtonElement, itemName:HTMLInputElement, 
     })
 }
 
-const deleteTask = (itemButtonDelete: HTMLButtonElement, itemDiv: HTMLDivElement, item: itemInterface) => {
-    itemButtonDelete.addEventListener('click', e => {
+const deleteTask = (itemButtonDelete: HTMLButtonElement, itemDiv: HTMLDivElement, item: ItemInterface): void => {
+    itemButtonDelete.addEventListener('click', (): void => {
         const question = confirm('Do you really want to delete this task?');
         if (question) {
             const index = todoItems.indexOf(item);
